@@ -1,45 +1,56 @@
-class Solution {
-    public void nextPermutation(int[] nums) {
-        if (nums.length == 1) {
-            return;
-        }
+import java.util.Scanner;
 
-        int indx1 = -1;
-        for (int i = nums.length - 2; i >= 0; i--) {
-            if (nums[i] < nums[i + 1]) {
-                indx1 = i;
-                break;
+public class next_permutation {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        while (t > 0) {
+            int n = sc.nextInt();
+            int[] arr = new int[n];
+            for (int i = 0; i < arr.length; i++) {
+                arr[i] = sc.nextInt();
             }
-        }
-
-        if (indx1 < 0) {
-            reverse(nums, 0, nums.length - 1);
-        } else {
-            int indx2 = -1;
-            for (int i = nums.length - 1; i > indx1; i--) {
-                if (nums[i] > nums[indx1]) {
-                    indx2 = i;
-                    break;
-                }
+            nextper(arr); // Move the nextper call inside the while loop
+            for (int i = 0; i < arr.length; i++) {
+                System.out.print(arr[i] + " ");
             }
-
-            
-            int temp = nums[indx1];
-            nums[indx1] = nums[indx2];
-            nums[indx2] = temp;
-
-            
-            reverse(nums, indx1 + 1, nums.length - 1);
+            System.out.println(); // Add a newline after printing each permutation
+            t--;
         }
     }
 
-    private void reverse(int[] nums, int start, int end) {
-        while (start < end) {
-            int temp = nums[start];
-            nums[start] = nums[end];
-            nums[end] = temp;
-            start++;
-            end--;
+    public static void nextper(int[] arr) {
+        int p = 0;
+        int q = 0;
+        for (int i = arr.length - 2; i >= 0; i--) {
+            if (arr[i + 1] > arr[i]) {
+                p = i;
+                break;
+            }
+        }
+        for (int j = arr.length - 1; j > p; j--) {
+            if (arr[j] > arr[p]) {
+                q = j;
+                break;
+            }
+        }
+        if (p == 0 && q == 0) {
+            reversing(arr, 0, arr.length - 1); // Adjust reversing function arguments
+            return;
+        }
+        int temp = arr[p];
+        arr[p] = arr[q];
+        arr[q] = temp;
+        reversing(arr, p + 1, arr.length - 1); // Adjust reversing function arguments
+    }
+
+    public static void reversing(int[] arr, int i, int j) {
+        while (i < j) {
+            int temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+            i++;
+            j--;
         }
     }
 }
