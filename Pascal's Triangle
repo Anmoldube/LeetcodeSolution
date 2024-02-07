@@ -1,0 +1,19 @@
+class Solution {
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> triangle = new ArrayList<>();
+
+        for (int row = 0; row < numRows; row++) {
+            List<Integer> currentRow = new ArrayList<>();
+            int currentValue = 1;
+
+            for (int i = 0; i <= row; i++) {
+                currentRow.add(currentValue);
+                currentValue = currentValue * (row - i) / (i + 1);
+            }
+
+            triangle.add(currentRow);
+        }
+
+        return triangle;
+    }
+}
