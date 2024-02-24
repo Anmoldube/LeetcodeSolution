@@ -13,3 +13,62 @@ class Solution {
        return maxArea;
     }
 }
+-------&&-----------
+Let's debug the provided code for the example `[1,8,6,2,5,4,8,3,7]`.
+
+1. Initialize `left` pointer to index 0 and `right` pointer to index `height.length - 1`, i.e., 8.
+2. Initialize `maxArea` to 0.
+
+**Iteration 1:**
+- `left` = 0, `right` = 8.
+- Calculate the current area using the formula: `min(height[0], height[8]) * (8 - 0) = min(1, 7) * 8 = 1 * 8 = 8`.
+- Update `maxArea` to 8.
+- Since `height[0] < height[8]`, increment `left` to 1.
+
+**Iteration 2:**
+- `left` = 1, `right` = 8.
+- Calculate the current area: `min(height[1], height[8]) * (8 - 1) = min(8, 7) * 7 = 7 * 7 = 49`.
+- Update `maxArea` to 49.
+- Since `height[1] > height[8]`, decrement `right` to 7.
+
+**Iteration 3:**
+- `left` = 1, `right` = 7.
+- Calculate the current area: `min(height[1], height[7]) * (7 - 1) = min(8, 3) * 6 = 3 * 6 = 18`.
+- Update `maxArea` to 49 (no change).
+- Since `height[1] > height[7]`, decrement `right` to 6.
+
+**Iteration 4:**
+- `left` = 1, `right` = 6.
+- Calculate the current area: `min(height[1], height[6]) * (6 - 1) = min(8, 8) * 5 = 8 * 5 = 40`.
+- Update `maxArea` to 49 (no change).
+- Since `height[1] < height[6]`, increment `left` to 2.
+
+**Iteration 5:**
+- `left` = 2, `right` = 6.
+- Calculate the current area: `min(height[2], height[6]) * (6 - 2) = min(6, 8) * 4 = 6 * 4 = 24`.
+- Update `maxArea` to 49 (no change).
+- Since `height[2] < height[6]`, increment `left` to 3.
+
+**Iteration 6:**
+- `left` = 3, `right` = 6.
+- Calculate the current area: `min(height[3], height[6]) * (6 - 3) = min(2, 8) * 3 = 2 * 3 = 6`.
+- Update `maxArea` to 49 (no change).
+- Since `height[3] < height[6]`, increment `left` to 4.
+
+**Iteration 7:**
+- `left` = 4, `right` = 6.
+- Calculate the current area: `min(height[4], height[6]) * (6 - 4) = min(5, 8) * 2 = 5 * 2 = 10`.
+- Update `maxArea` to 49 (no change).
+- Since `height[4] < height[6]`, increment `left` to 5.
+
+**Iteration 8:**
+- `left` = 5, `right` = 6.
+- Calculate the current area: `min(height[5], height[6]) * (6 - 5) = min(4, 8) * 1 = 4 * 1 = 4`.
+- Update `maxArea` to 49 (no change).
+- Since `height[5] < height[6]`, increment `left` to 6.
+
+**Iteration 9:**
+- `left` = 6, `right` = 6.
+- The pointers meet, and the loop ends.
+
+The maximum area is 49, achieved when the two pointers point to the elements with values 8 and 3, respectively.
