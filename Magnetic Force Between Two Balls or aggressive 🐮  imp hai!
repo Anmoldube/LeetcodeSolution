@@ -1,0 +1,36 @@
+class Solution {
+    public int maxDistance(int[] stalls, int m) {
+        int n = stalls.length-1;
+        Arrays.sort(stalls);
+        int lo  = 0;
+        int hi = stalls[n];
+        int ans = 0;
+       while(lo<=hi){
+           int mid = (lo + hi) / 2; // Corrected calculation of mid
+           if(ispossible(stalls,mid,m)==true){
+               ans= mid ;
+               lo = mid + 1;
+           }
+           else{
+               hi = mid -1;
+           }
+       }
+        return ans;
+    }
+   public static boolean ispossible(int[] stalls, int mid, int k){
+       int cow = 1;
+       int position = stalls[0];
+       int i = 1;
+       while(i<stalls.length){
+           if(stalls[i] - position>=mid){
+               cow++;
+                   position = stalls[i];
+           }
+           if(cow==k){
+               return true;
+           }
+           i++;
+       }
+       return false;
+   }
+}
