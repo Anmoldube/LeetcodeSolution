@@ -1,0 +1,26 @@
+class Solution {
+    static String[] key = { "", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz" };
+    
+    public List<String> letterCombinations(String digits) {
+        List<String> list = new ArrayList<>();
+        keyPressed(digits, "", list);
+        return list;
+    }
+
+    public static void keyPressed(String ques, String ans, List<String> list) {
+        if (ques.isEmpty()) {
+            if (!ans.isEmpty()) {
+                list.add(ans);
+            }
+            return;
+        }
+        char ch = ques.charAt(0);
+        if (ch < '2' || ch > '9') {
+            return; // Skip non-digit characters
+        }
+        String pressStr = key[ch - '0'];
+        for (int i = 0; i < pressStr.length(); i++) {
+            keyPressed(ques.substring(1), ans + pressStr.charAt(i), list);
+        }
+    }
+}
