@@ -1,0 +1,26 @@
+class Solution {
+    public int countStudents(int[] students, int[] sandwiches) {
+        int c = 0;
+        int sq = 0;
+        for(int choice : students){
+            if(choice == 0){
+                c++;
+            }else sq++;
+        }
+        for(int sandwich : sandwiches){
+            if(sandwich==0 && c ==0){
+                return sq;
+            }
+            if(sandwich == 1 && sq == 0){
+                return c;
+            }
+            if(sandwich == 0){
+                c--;
+            }
+            else{
+                sq--;
+            }
+        }
+        return 0;
+    }
+}
