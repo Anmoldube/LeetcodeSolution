@@ -1,0 +1,14 @@
+class Solution {
+    public int timeRequiredToBuy(int[] arr, int k) {
+        int time = 0;
+        for(int c =0 ; c < arr.length;c++){
+            if(c <=k){
+                time = time + Math.min(arr[c], arr[k]);
+            }
+            else{
+                time +=  Math.min(arr[c], arr[k]-1);
+            }
+        }
+        return time;
+    }
+}
